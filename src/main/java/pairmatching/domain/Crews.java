@@ -62,10 +62,10 @@ public class Crews {
 	}
 
 	public List<String> getCrews(String courseName) {
-		if (Course.BACKEND.getName() == courseName) {
+		if (Course.BACKEND.getName().equals(courseName)) {
 			return backEndCrews;
 		}
-		if (Course.FRONTEND.getName() == courseName){
+		if (Course.FRONTEND.getName().equals(courseName)){
 			return FrontEndCrews;
 		}
 		return null;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import pairmatching.domain.Course;
@@ -22,18 +21,19 @@ public class MatchingMachine {
 	Missions missions;
 	Crews crews;
 
-	public MatchingMachine(){
+	public MatchingMachine() {
 		this.missions = new Missions();
 		this.crews = new Crews();
 	}
-	public void run(){
+
+	public void run() {
 		MainView mainView = MainView.valueOf(InputView.askFeature());
 		runFeature(mainView);
 	}
 
 	private void runFeature(MainView mainView) {
-		if (mainView.isMatching()){
-			matching();
+		if (mainView.isMatching()) {
+			matching(checkExistPairCrews());
 			return;
 		}
 		// if(mainView.isSearching()){
@@ -49,25 +49,31 @@ public class MatchingMachine {
 		// }
 	}
 
-	private void matching(){
+	public Mission checkExistPairCrews() {
+		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
+				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
+
+		while (mission.getPairCrews() != null) {
+			String answer = InputView.askKeepMatching();
+			if (answer.equals("예")) {
+				break;
+			}
+			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+			mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
+					Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
+		}
+		return mission;
+	}
+
+	private void matching(Mission mission) {
 		Matching matching = new Matching();
 		Set<List> pairsCrew = new HashSet<>();
 		List<String> crewNames = new ArrayList<>();
-		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
-		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)), Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
-		crewNames = crews.getCrews(Course.getCourse(matchInformation.get(0)).getName());
-
-		if(mission.getPairCrews() == null) {
-			pairsCrew = matching.matching(crewNames);
-			OutputView.printPairCrews(pairsCrew);
-		}
-		if(mission.getPairCrews() != null){
-			String answer = InputView.askKeepMatching();
-			if (answer.equals("네")) {
-				Set<List> prePairCrew = mission.getPairCrews();
-
-			}
-		}
+		crewNames = crews.getCrews(mission.getCourse().getName());
+		pairsCrew = matching.pairMatching(crewNames);
+		OutputView.printPairCrews(pairsCrew);
 	}
 }
+
 //백엔드, 레벨1, 자동차경주

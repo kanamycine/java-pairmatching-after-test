@@ -17,8 +17,9 @@ public class Matching {
 		this.pairCrews = new HashSet<>();
 	}
 
-	public Set<List> matching(List<String> crewNames) {
+	public Set<List> pairMatching(List<String> crewNames) {
 		Randoms.shuffle(crewNames);
+
 		if (crewNames.size() % 2 == 0) {
 			makeEvenNumberCrews(crewNames);
 		}
@@ -49,4 +50,6 @@ public class Matching {
 		pair.add(crewNames.get(crewNames.size() - 2));
 		pair.add(crewNames.get(crewNames.size() - 3));
 	}
+
+	private void check
 }

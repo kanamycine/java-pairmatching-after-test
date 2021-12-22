@@ -12,6 +12,4 @@ public class Application {
 		MatchingMachine matching = new MatchingMachine();
 		matching.run();
 	}
-
-
 }
