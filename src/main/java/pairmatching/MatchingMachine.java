@@ -33,7 +33,7 @@ public class MatchingMachine {
 
 	private void runFeature(MainView mainView) {
 		if (mainView.isMatching()) {
-			matching(checkExistPairCrews());
+			matching();
 			return;
 		}
 		// if(mainView.isSearching()){
@@ -48,15 +48,30 @@ public class MatchingMachine {
 		// 	exit();
 		// }
 	}
+	private void matching(){
+		Matching matching = new Matching();
+		Mission mission = missionInput();
+		Set<List> pairCrews = matching.matching(mission, crews);
+		int errorCountLimit = 3;
 
-	public Mission checkExistPairCrews() {
+		while(errorCountLimit > 0){
+			if(matching.checkDuplicatePair(pairCrews, missions, mission)){
+				OutputView.printPairCrews(pairCrews);
+				return;
+			}
+			errorCountLimit--;
+		}
+		//여기까지 왔다면 에러 던지기
+	}
+
+	public Mission missionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
 
 		while (mission.getPairCrews() != null) {
-			String answer = InputView.askKeepMatching();
-			if (answer.equals("예")) {
+			String keepMatchingAnswer = InputView.askKeepMatching();
+			if (keepMatchingAnswer.equals("예")) {
 				break;
 			}
 			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
@@ -65,15 +80,8 @@ public class MatchingMachine {
 		}
 		return mission;
 	}
-
-	private void matching(Mission mission) {
-		Matching matching = new Matching();
-		Set<List> pairsCrew = new HashSet<>();
-		List<String> crewNames = new ArrayList<>();
-		crewNames = crews.getCrews(mission.getCourse().getName());
-		pairsCrew = matching.pairMatching(crewNames);
-		OutputView.printPairCrews(pairsCrew);
-	}
 }
+
+
 
 //백엔드, 레벨1, 자동차경주

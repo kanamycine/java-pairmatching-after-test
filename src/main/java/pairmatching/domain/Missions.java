@@ -48,4 +48,14 @@ public class Missions {
 		}
 		return null;
 	}
+
+	public List<Mission> getSameLevelMission(Level level){
+		List<Mission> levelMissions = new ArrayList<>();
+		for(Mission mission : missions){
+			if (mission.getLevel().equals(level)){
+				levelMissions.add(mission);
+			}
+		}
+		return levelMissions;
+	}
 }
