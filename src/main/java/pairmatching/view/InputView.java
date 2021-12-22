@@ -20,7 +20,10 @@ public class InputView {
 	private static final String ASK_MATCH_INFORMATION_INPUT = "과정, 레벨, 미션을 선택하세요.";
 	private static final String ASK_MATCH_INFORMATION_EX = "ex) 백엔드, 레벨1, 자동차경주";
 
-	public static int askFeature(){
+	private static final String ASK_KEEP_MATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
+	private static final String YES_OR_NO_INPUT = "네 | 아니오";
+
+	public static int askFeature() {
 		System.out.println(ASK_FEATURE_INPUT);
 		System.out.println(MATCHING_INPUT);
 		System.out.println(SEARCH_INPUT);
@@ -29,7 +32,7 @@ public class InputView {
 		return Integer.parseInt(Console.readLine());
 	}
 
-	public static String askWantedMatchingInformation(){
+	public static String askWantedMatchingInformation() {
 		System.out.println(HASH_LINE);
 		System.out.println(COURSE_LIST);
 		System.out.println(MISSION);
@@ -43,4 +46,11 @@ public class InputView {
 		System.out.println(ASK_MATCH_INFORMATION_EX);
 		return Console.readLine();
 	}
+
+	public static String askKeepMatching(){
+		System.out.println(ASK_KEEP_MATCHING);
+		System.out.println(YES_OR_NO_INPUT);
+		return Console.readLine();
+	}
+
 }

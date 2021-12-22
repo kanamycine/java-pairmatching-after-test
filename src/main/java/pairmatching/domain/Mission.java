@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ public class Mission {
 	private Level level;
 	private String name;
 
-	private Set<Map> pairCrews;
+	private Set<List> pairCrews;
 
 	public Mission(Course course, Level level, String name){
 		pairCrews = null;
@@ -30,7 +31,7 @@ public class Mission {
 		return name;
 	}
 
-	public Set<Map> getPairCrews() {
+	public Set<List> getPairCrews() {
 		return pairCrews;
 	}
 }

@@ -56,14 +56,16 @@ public class MatchingMachine {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)), Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
 		crewNames = crews.getCrews(Course.getCourse(matchInformation.get(0)).getName());
+
 		if(mission.getPairCrews() == null) {
 			pairsCrew = matching.matching(crewNames);
 			OutputView.printPairCrews(pairsCrew);
 		}
 		if(mission.getPairCrews() != null){
-			Set<Map> prePairCrew = mission.getPairCrews();
-			for(int i = 0; i < pairsCrew.size(); i++) {
-				;
+			String answer = InputView.askKeepMatching();
+			if (answer.equals("네")) {
+				Set<List> prePairCrew = mission.getPairCrews();
+
 			}
 		}
 	}
