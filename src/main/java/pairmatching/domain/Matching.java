@@ -72,7 +72,9 @@ public class Matching {
 		Level sameLevel = mission.getLevel();
 		List<Mission> sameLevelMissions = missions.getSameLevelMission(sameLevel);
 		for(Mission sameLevelMission : sameLevelMissions){
-			Set<List> eachPairCrews = sameLevelMission.getPairCrews();
+			Set<List> eachPairCrews = new HashSet<>();
+			eachPairCrews = sameLevelMission.getPairCrews();
+			System.out.println(eachPairCrews.size());
 			totalPairCrewsCount += eachPairCrews.size();
 			for (List pair : eachPairCrews){
 				sameLevelPairCrews.add(pair);
