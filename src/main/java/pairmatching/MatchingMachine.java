@@ -11,7 +11,6 @@ import pairmatching.domain.MainView;
 import pairmatching.domain.Matching;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
-import pairmatching.domain.Searching;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -70,7 +69,6 @@ public class MatchingMachine {
 	}
 
 	private void searching() {
-		Searching searching = new Searching();
 		searchingInput();
 		System.out.println();
 	}

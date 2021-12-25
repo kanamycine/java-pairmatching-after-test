@@ -22,14 +22,14 @@ public class Matching {
 		crewNames = crews.getCrews(mission.getCourse().getName());
 		//중복 검사 로직
 
-		pairsCrew = pairMatching(crewNames, mission);
+		pairsCrew = pairMatching(crewNames);
 		return pairsCrew;
 	}
 
 
 
-	public Set<Set> pairMatching(List<String> crewNames, Mission mission) {
-		Randoms.shuffle(crewNames);
+	public Set<Set> pairMatching(List<String> crewNames) {
+		crewNames = Randoms.shuffle(crewNames);
 
 		if (crewNames.size() % 2 == 0) {
 			makeEvenNumberCrews(crewNames);
