@@ -32,4 +32,8 @@ public class Mission {
 	public Set<Set> getPairCrews() {
 		return pairCrews;
 	}
+
+	public void updatePairCrews(Set<Set> updatedPairCrews){
+		this.pairCrews = updatedPairCrews;
+	}
 }

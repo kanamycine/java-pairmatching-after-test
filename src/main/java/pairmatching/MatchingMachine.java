@@ -11,13 +11,15 @@ import pairmatching.domain.MainView;
 import pairmatching.domain.Matching;
 import pairmatching.domain.Mission;
 import pairmatching.domain.Missions;
+import pairmatching.domain.Searching;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
 public class MatchingMachine {
 
-	Missions missions;
-	Crews crews;
+	private Missions missions;
+	private Crews crews;
+
 
 	public MatchingMachine() {
 		this.missions = new Missions();
@@ -25,8 +27,13 @@ public class MatchingMachine {
 	}
 
 	public void run() {
-		MainView mainView = MainView.valueOf(InputView.askFeature());
-		runFeature(mainView);
+		while (true) {
+			MainView mainView = MainView.valueOf(InputView.askFeature());
+			if(mainView.isExit()){
+				return;
+			}
+			runFeature(mainView);
+		}
 	}
 
 	private void runFeature(MainView mainView) {
@@ -34,10 +41,10 @@ public class MatchingMachine {
 			matching();
 			return;
 		}
-		// if(mainView.isSearching()){
-		// 	searching();
-		// 	return;
-		// }
+		if (mainView.isSearching()) {
+			searching();
+			return;
+		}
 		// if(mainView.isInitializing()){
 		// 	initializing();
 		// 	return;
@@ -46,14 +53,16 @@ public class MatchingMachine {
 		// 	exit();
 		// }
 	}
-	private void matching(){
+
+	private void matching() {
 		Matching matching = new Matching();
 		Mission mission = missionInput();
 		Set<Set> pairCrews = matching.matching(mission, crews);
 		int errorCountLimit = 3;
 
-		while(errorCountLimit > 0){
-			if(matching.checkDuplicatePair(pairCrews, missions, mission)){
+		while (errorCountLimit > 0) {
+			if (matching.checkDuplicatePair(pairCrews, missions, mission)) {
+				mission.updatePairCrews(pairCrews);
 				OutputView.printPairCrews(pairCrews);
 				return;
 			}
@@ -62,7 +71,12 @@ public class MatchingMachine {
 		//여기까지 왔다면 에러 던지기
 	}
 
-	public Mission missionInput() {
+	private void searching() {
+		Searching searching = new Searching();
+		searchingInput();
+	}
+
+	private Mission missionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
@@ -78,8 +92,11 @@ public class MatchingMachine {
 		}
 		return mission;
 	}
+
+	private void searchingInput() {
+
+	}
+
 }
-
-
 
 //백엔드, 레벨1, 자동차경주

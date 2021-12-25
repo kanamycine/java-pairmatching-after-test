@@ -14,7 +14,12 @@ public class OutputView {
 		for (Set set : pairCrews){
 			Iterator nestedIterator = set.iterator();
 			while (nestedIterator.hasNext()){
-				System.out.println(nestedIterator.next() + " : " + nestedIterator.next());
+				if (set.size()==2) {
+					System.out.println(nestedIterator.next() + " : " + nestedIterator.next());
+				}
+				if (set.size()==3){
+					System.out.println(nestedIterator.next() + " : " + nestedIterator.next() + " : " + nestedIterator.next());
+				}
 			}
 		}
 	}

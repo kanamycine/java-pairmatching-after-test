@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public class Matching {
 	private Set<Set> pairCrews;
 
 	public Matching(){
-		this.pairCrews = new HashSet<>();
+		this.pairCrews = new LinkedHashSet<>();
 	}
 
 	public Set<Set> matching(Mission mission, Crews crews) {
@@ -49,16 +50,18 @@ public class Matching {
 	}
 
 	private void makeOddNumberCrews(List<String> crewNames) {
-		for (int i = 0; i < (crewNames.size() / 2) - 1; i += 2) {
+
+		for (int i = 0; i < crewNames.size()-3; i += 2) {
 			Set<String> pair = new HashSet<>();
 			pair.add(crewNames.get(i));
 			pair.add(crewNames.get(i + 1));
 			pairCrews.add(pair);
 		}
-		List<String> pair = new ArrayList<>();
+		Set<String> pair = new HashSet<>();
 		pair.add(crewNames.get(crewNames.size() - 1));
 		pair.add(crewNames.get(crewNames.size() - 2));
 		pair.add(crewNames.get(crewNames.size() - 3));
+		pairCrews.add(pair);
 	}
 
 	public boolean checkDuplicatePair(Set<Set> pairCrews, Missions missions, Mission mission){
@@ -68,15 +71,23 @@ public class Matching {
 		Set<Set> sameLevelPairCrews = new HashSet<>();
 		int totalPairCrewsCount = pairCrews.size();
 		Level sameLevel = mission.getLevel();
+		Course sameCourse = mission.getCourse();
+		String sameName = mission.getName();
 		for(Set pair : pairCrews){
 			sameLevelPairCrews.add(pair);
 		}
-		List<Mission> sameLevelMissions = missions.getSameLevelMission(sameLevel);
+
+
+		List<Mission> sameLevelMissions = missions.getSameLevelCourseMission(sameLevel, sameCourse, sameName);
 		for(Mission sameLevelMission : sameLevelMissions){
 			Set<Set> eachPairCrews = new HashSet<>();
 			eachPairCrews = sameLevelMission.getPairCrews();
-			System.out.println(eachPairCrews.size());
-			totalPairCrewsCount += eachPairCrews.size();
+			if(eachPairCrews == null) {
+				continue;
+			}
+			if(eachPairCrews != null) {
+				totalPairCrewsCount += eachPairCrews.size();
+			}
 			for (Set pair : eachPairCrews){
 				sameLevelPairCrews.add(pair);
 			}

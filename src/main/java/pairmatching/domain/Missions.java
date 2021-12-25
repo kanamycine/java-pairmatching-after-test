@@ -49,10 +49,10 @@ public class Missions {
 		return null;
 	}
 
-	public List<Mission> getSameLevelMission(Level level){
+	public List<Mission> getSameLevelCourseMission(Level level, Course course, String name){
 		List<Mission> levelMissions = new ArrayList<>();
 		for(Mission mission : missions){
-			if (mission.getLevel().equals(level)){
+			if (mission.getLevel().equals(level) && mission.getCourse().equals(course) && !(mission.getName().equals(name))){
 				levelMissions.add(mission);
 			}
 		}
