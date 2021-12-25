@@ -8,7 +8,7 @@ public class Mission {
 	private Level level;
 	private String name;
 
-	private Set<List> pairCrews;
+	private Set<Set> pairCrews;
 
 	public Mission(Course course, Level level, String name){
 		pairCrews = null;
@@ -29,7 +29,7 @@ public class Mission {
 		return name;
 	}
 
-	public Set<List> getPairCrews() {
+	public Set<Set> getPairCrews() {
 		return pairCrews;
 	}
 }

@@ -49,7 +49,7 @@ public class MatchingMachine {
 	private void matching(){
 		Matching matching = new Matching();
 		Mission mission = missionInput();
-		Set<List> pairCrews = matching.matching(mission, crews);
+		Set<Set> pairCrews = matching.matching(mission, crews);
 		int errorCountLimit = 3;
 
 		while(errorCountLimit > 0){

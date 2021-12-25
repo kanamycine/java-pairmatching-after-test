@@ -9,7 +9,7 @@ import pairmatching.domain.Crews;
 
 public class Application {
 	public static void main(String[] args) {
-		MatchingMachine matching = new MatchingMachine();
-		matching.run();
+		MatchingMachine matchingMachine = new MatchingMachine();
+		matchingMachine.run();
 	}
 }

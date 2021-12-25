@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Missions {
-	List<Mission> missions;
+	private List<Mission> missions;
 
 	public Missions(){
 		missions = new ArrayList<>();
