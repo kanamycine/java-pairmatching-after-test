@@ -7,7 +7,6 @@ import java.util.Set;
 
 public class OutputView {
 	public static void printPairCrews(Set<Set> pairCrews){
-
 		System.out.println();
 		System.out.println("페어 매칭 결과입니다.");
 		Iterator iterator = pairCrews.iterator();
@@ -22,5 +21,9 @@ public class OutputView {
 				}
 			}
 		}
+	}
+
+	public static void printNonSearchingResult(){
+		System.out.println("매칭 결과가 없습니다.");
 	}
 }

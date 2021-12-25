@@ -58,4 +58,8 @@ public class Missions {
 		}
 		return levelMissions;
 	}
+
+	public List<Mission> getMissions() {
+		return missions;
+	}
 }

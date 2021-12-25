@@ -4,7 +4,7 @@ public enum MainView {
 	MATCHING(1),
 	SEARCHING(2),
 	INITIALIZING(3),
-	QUIT(4);
+	QUIT(81);
 
 	private final int number;
 

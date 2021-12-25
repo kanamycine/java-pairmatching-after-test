@@ -29,7 +29,11 @@ public class InputView {
 		System.out.println(SEARCH_INPUT);
 		System.out.println(INITIALIZING_INPUT);
 		System.out.println(QUIT_INPUT);
-		return Integer.parseInt(Console.readLine());
+		String input = Console.readLine();
+		if(input.equals("Q")){
+			return input.charAt(0);
+		}
+		return Integer.parseInt(input);
 	}
 
 	public static String askWantedMatchingInformation() {

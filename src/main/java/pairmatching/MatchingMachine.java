@@ -45,13 +45,10 @@ public class MatchingMachine {
 			searching();
 			return;
 		}
-		// if(mainView.isInitializing()){
-		// 	initializing();
-		// 	return;
-		// }
-		// if(mainView.isExit()){
-		// 	exit();
-		// }
+		if(mainView.isInitializing()){
+			initializing();
+			return;
+		}
 	}
 
 	private void matching() {
@@ -64,6 +61,7 @@ public class MatchingMachine {
 			if (matching.checkDuplicatePair(pairCrews, missions, mission)) {
 				mission.updatePairCrews(pairCrews);
 				OutputView.printPairCrews(pairCrews);
+				System.out.println();
 				return;
 			}
 			errorCountLimit--;
@@ -74,6 +72,14 @@ public class MatchingMachine {
 	private void searching() {
 		Searching searching = new Searching();
 		searchingInput();
+		System.out.println();
+	}
+
+	private void initializing(){
+		List<Mission> allMissions = missions.getMissions();
+		for(Mission mission : allMissions){
+			mission.updatePairCrews(null);
+		}
 	}
 
 	private Mission missionInput() {
@@ -94,7 +100,14 @@ public class MatchingMachine {
 	}
 
 	private void searchingInput() {
-
+		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
+				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
+		if(mission.getPairCrews() == null){
+			OutputView.printNonSearchingResult();
+			return;
+		}
+		OutputView.printPairCrews(mission.getPairCrews());
 	}
 
 }
