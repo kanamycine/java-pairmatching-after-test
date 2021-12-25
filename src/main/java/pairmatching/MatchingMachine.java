@@ -83,7 +83,7 @@ public class MatchingMachine {
 
 		while (mission.getPairCrews() != null) {
 			String keepMatchingAnswer = InputView.askKeepMatching();
-			if (keepMatchingAnswer.equals("예")) {
+			if (keepMatchingAnswer.equals("네")) {
 				break;
 			}
 			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
