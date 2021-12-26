@@ -38,8 +38,9 @@ public class Crews {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
-	}	public void makeFrontCrews() {
+	public void makeFrontCrews() {
 		String readLine = null;
 		int lineNumber = 0;
 		boolean hasMore = true;
@@ -65,7 +66,7 @@ public class Crews {
 		if (Course.BACKEND.getName().equals(courseName)) {
 			return backEndCrews;
 		}
-		if (Course.FRONTEND.getName().equals(courseName)){
+		if (Course.FRONTEND.getName().equals(courseName)) {
 			return FrontEndCrews;
 		}
 		return null;

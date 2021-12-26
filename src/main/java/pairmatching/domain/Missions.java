@@ -14,7 +14,7 @@ public class Missions {
 		makeLevelFourMission();
 	}
 
-	public void makeLevelOneMission(){
+	private void makeLevelOneMission(){
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL1, "자동차경주"));
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL1, "자동차경주"));
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL1, "로또"));
@@ -24,7 +24,7 @@ public class Missions {
 
 	}
 
-	public void makeLevelTwoMission(){
+	private void makeLevelTwoMission(){
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL2, "장바구니"));
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL2, "장바구니"));
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL2, "결제"));
@@ -33,7 +33,7 @@ public class Missions {
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL2, "지하철노선도"));
 	}
 
-	public void makeLevelFourMission(){
+	private void makeLevelFourMission(){
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL4, "성능개선"));
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL4, "성능개선"));
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL4, "배포"));

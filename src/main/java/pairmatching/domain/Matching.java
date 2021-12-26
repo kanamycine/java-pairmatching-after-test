@@ -26,7 +26,7 @@ public class Matching {
 
 
 
-	public Set<Set> pairMatching(List<String> crewNames) {
+	private Set<Set> pairMatching(List<String> crewNames) {
 		crewNames = Randoms.shuffle(crewNames);
 
 		if (crewNames.size() % 2 == 0) {
@@ -48,7 +48,6 @@ public class Matching {
 	}
 
 	private void makeOddNumberCrews(List<String> crewNames) {
-
 		for (int i = 0; i < crewNames.size()-3; i += 2) {
 			Set<String> pair = new HashSet<>();
 			pair.add(crewNames.get(i));
@@ -68,9 +67,7 @@ public class Matching {
 		Level sameLevel = mission.getLevel();
 		Course sameCourse = mission.getCourse();
 		String sameName = mission.getName();
-		for(Set pair : pairCrews){
-			sameLevelPairCrews.add(pair);
-		}
+		sameLevelPairCrewsAdder(pairCrews, sameLevelPairCrews);
 		List<Mission> sameLevelMissions = missions.getSameLevelCourseMission(sameLevel, sameCourse, sameName);
 		totalPairCrewsCount = getTotalPairCrewsCount(sameLevelPairCrews, totalPairCrewsCount, sameLevelMissions);
 		return totalPairCrewsCount == sameLevelPairCrews.size();
@@ -87,10 +84,14 @@ public class Matching {
 			if(eachPairCrews != null) {
 				totalPairCrewsCount += eachPairCrews.size();
 			}
-			for (Set pair : eachPairCrews){
-				sameLevelPairCrews.add(pair);
-			}
+			sameLevelPairCrewsAdder(eachPairCrews, sameLevelPairCrews);
 		}
 		return totalPairCrewsCount;
+	}
+
+	private void sameLevelPairCrewsAdder(Set<Set> pairCrews, Set<Set> sameLevelPairCrews) {
+		for (Set pair : pairCrews) {
+			sameLevelPairCrews.add(pair);
+		}
 	}
 }
