@@ -40,7 +40,7 @@ public class Matching {
 
 	private void makeEvenNumberCrews(List<String> crewNames) {
 		for (int i = 0; i < crewNames.size(); i += 2) {
-			Set<String> pair = new HashSet<>();
+			Set<String> pair = new LinkedHashSet<>();
 			pair.add(crewNames.get(i));
 			pair.add(crewNames.get(i + 1));
 			pairCrews.add(pair);
