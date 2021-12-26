@@ -54,18 +54,24 @@ public class MatchingMachine {
 		Matching matching = new Matching();
 		Mission mission = missionInput();
 		Set<Set> pairCrews = matching.matching(mission, crews);
-		int errorCountLimit = 3;
+		if (checkDuplicated(matching, mission, pairCrews)){
+			OutputView.printPairCrews(pairCrews);
+			System.out.println();
+			return;
+		}
+		System.out.println("[Error] : 3회이상 재매칭 해보았으나, 경우의 수를 발견하지 못했습니다.");
+	}
 
+	private boolean checkDuplicated(Matching matching, Mission mission, Set<Set> pairCrews) {
+		int errorCountLimit = 3;
 		while (errorCountLimit > 0) {
 			if (matching.checkDuplicatePair(pairCrews, missions, mission)) {
 				mission.updatePairCrews(pairCrews);
-				OutputView.printPairCrews(pairCrews);
-				System.out.println();
-				return;
+				return true;
 			}
 			errorCountLimit--;
 		}
-		//여기까지 왔다면 에러 던지기
+		return false;
 	}
 
 	private void searching() {
