@@ -107,7 +107,4 @@ public class MatchingMachine {
 		}
 		OutputView.printPairCrews(mission.getPairCrews());
 	}
-
 }
-
-//백엔드, 레벨1, 자동차경주

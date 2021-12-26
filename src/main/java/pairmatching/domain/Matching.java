@@ -20,8 +20,6 @@ public class Matching {
 		Set<Set> pairsCrew = new HashSet<>();
 		List<String> crewNames = new ArrayList<>();
 		crewNames = crews.getCrews(mission.getCourse().getName());
-		//중복 검사 로직
-
 		pairsCrew = pairMatching(crewNames);
 		return pairsCrew;
 	}
@@ -65,9 +63,6 @@ public class Matching {
 	}
 
 	public boolean checkDuplicatePair(Set<Set> pairCrews, Missions missions, Mission mission){
-
-		//레벨만 비교하고 있는데, 코스 비교도 필요함.
-		//
 		Set<Set> sameLevelPairCrews = new HashSet<>();
 		int totalPairCrewsCount = pairCrews.size();
 		Level sameLevel = mission.getLevel();
@@ -76,9 +71,13 @@ public class Matching {
 		for(Set pair : pairCrews){
 			sameLevelPairCrews.add(pair);
 		}
-
-
 		List<Mission> sameLevelMissions = missions.getSameLevelCourseMission(sameLevel, sameCourse, sameName);
+		totalPairCrewsCount = getTotalPairCrewsCount(sameLevelPairCrews, totalPairCrewsCount, sameLevelMissions);
+		return totalPairCrewsCount == sameLevelPairCrews.size();
+	}
+
+	private int getTotalPairCrewsCount(Set<Set> sameLevelPairCrews, int totalPairCrewsCount,
+			List<Mission> sameLevelMissions) {
 		for(Mission sameLevelMission : sameLevelMissions){
 			Set<Set> eachPairCrews = new HashSet<>();
 			eachPairCrews = sameLevelMission.getPairCrews();
@@ -92,6 +91,6 @@ public class Matching {
 				sameLevelPairCrews.add(pair);
 			}
 		}
-		return totalPairCrewsCount == sameLevelPairCrews.size();
+		return totalPairCrewsCount;
 	}
 }
