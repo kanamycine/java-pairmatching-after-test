@@ -22,6 +22,6 @@ public class OutputView {
 	}
 
 	public static void printNonSearchingResult(){
-		System.out.println("매칭 결과가 없습니다.");
+		System.out.println("[ERROR] 매칭 이력이 없습니다.");
 	}
 }
