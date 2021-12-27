@@ -10,7 +10,7 @@ public class Mission {
 
 	private Set<Set> pairCrews;
 
-	public Mission(Course course, Level level, String name){
+	public Mission(Course course, Level level, String name) {
 		pairCrews = null;
 		this.course = course;
 		this.level = level;
@@ -33,7 +33,7 @@ public class Mission {
 		return pairCrews;
 	}
 
-	public void updatePairCrews(Set<Set> updatedPairCrews){
+	public void updatePairCrews(Set<Set> updatedPairCrews) {
 		this.pairCrews = updatedPairCrews;
 	}
 }

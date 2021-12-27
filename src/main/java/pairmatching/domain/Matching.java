@@ -12,7 +12,7 @@ public class Matching {
 
 	private Set<Set> pairCrews;
 
-	public Matching(){
+	public Matching() {
 		this.pairCrews = new LinkedHashSet<>();
 	}
 
@@ -23,8 +23,6 @@ public class Matching {
 		pairsCrew = pairMatching(crewNames);
 		return pairsCrew;
 	}
-
-
 
 	private Set<Set> pairMatching(List<String> crewNames) {
 		crewNames = Randoms.shuffle(crewNames);
@@ -48,7 +46,7 @@ public class Matching {
 	}
 
 	private void makeOddNumberCrews(List<String> crewNames) {
-		for (int i = 0; i < crewNames.size()-3; i += 2) {
+		for (int i = 0; i < crewNames.size() - 3; i += 2) {
 			Set<String> pair = new HashSet<>();
 			pair.add(crewNames.get(i));
 			pair.add(crewNames.get(i + 1));
@@ -61,7 +59,7 @@ public class Matching {
 		pairCrews.add(pair);
 	}
 
-	public boolean checkDuplicatePair(Set<Set> pairCrews, Missions missions, Mission mission){
+	public boolean checkDuplicatePair(Set<Set> pairCrews, Missions missions, Mission mission) {
 		Set<Set> sameLevelPairCrews = new HashSet<>();
 		int totalPairCrewsCount = pairCrews.size();
 		Level sameLevel = mission.getLevel();
@@ -75,13 +73,13 @@ public class Matching {
 
 	private int getTotalPairCrewsCount(Set<Set> sameLevelPairCrews, int totalPairCrewsCount,
 			List<Mission> sameLevelMissions) {
-		for(Mission sameLevelMission : sameLevelMissions){
+		for (Mission sameLevelMission : sameLevelMissions) {
 			Set<Set> eachPairCrews = new HashSet<>();
 			eachPairCrews = sameLevelMission.getPairCrews();
-			if(eachPairCrews == null) {
+			if (eachPairCrews == null) {
 				continue;
 			}
-			if(eachPairCrews != null) {
+			if (eachPairCrews != null) {
 				totalPairCrewsCount += eachPairCrews.size();
 			}
 			sameLevelPairCrewsAdder(eachPairCrews, sameLevelPairCrews);

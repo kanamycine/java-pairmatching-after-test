@@ -19,7 +19,6 @@ public class MatchingMachine {
 	private Missions missions;
 	private Crews crews;
 
-
 	public MatchingMachine() {
 		this.missions = new Missions();
 		this.crews = new Crews();
@@ -28,7 +27,7 @@ public class MatchingMachine {
 	public void run() {
 		while (true) {
 			MainView mainView = MainView.valueOf(InputView.askFeature());
-			if(mainView.isExit()){
+			if (mainView.isExit()) {
 				return;
 			}
 			runFeature(mainView);
@@ -44,7 +43,7 @@ public class MatchingMachine {
 			searching();
 			return;
 		}
-		if(mainView.isInitializing()){
+		if (mainView.isInitializing()) {
 			initializing();
 			return;
 		}
@@ -54,7 +53,7 @@ public class MatchingMachine {
 		Matching matching = new Matching();
 		Mission mission = missionInput();
 		Set<Set> pairCrews = matching.matching(mission, crews);
-		if (checkDuplicated(matching, mission, pairCrews)){
+		if (checkDuplicated(matching, mission, pairCrews)) {
 			OutputView.printPairCrews(pairCrews);
 			System.out.println();
 			return;
@@ -79,9 +78,9 @@ public class MatchingMachine {
 		System.out.println();
 	}
 
-	private void initializing(){
+	private void initializing() {
 		List<Mission> allMissions = missions.getMissions();
-		for(Mission mission : allMissions){
+		for (Mission mission : allMissions) {
 			mission.updatePairCrews(null);
 		}
 	}
@@ -107,7 +106,7 @@ public class MatchingMachine {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
-		if(mission.getPairCrews() == null){
+		if (mission.getPairCrews() == null) {
 			OutputView.printNonSearchingResult();
 			return;
 		}

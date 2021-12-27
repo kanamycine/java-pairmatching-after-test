@@ -1,4 +1,5 @@
 package pairmatching.view;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -30,7 +31,7 @@ public class InputView {
 		System.out.println(INITIALIZING_INPUT);
 		System.out.println(QUIT_INPUT);
 		String input = Console.readLine();
-		if(input.equals("Q")){
+		if (input.equals("Q")) {
 			return input.charAt(0);
 		}
 		return Integer.parseInt(input);
@@ -51,7 +52,7 @@ public class InputView {
 		return Console.readLine();
 	}
 
-	public static String askKeepMatching(){
+	public static String askKeepMatching() {
 		System.out.println(ASK_KEEP_MATCHING);
 		System.out.println(YES_OR_NO_INPUT);
 		return Console.readLine();
