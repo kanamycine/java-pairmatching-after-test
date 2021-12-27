@@ -74,8 +74,13 @@ public class MatchingMachine {
 	}
 
 	private void searching() {
-		searchingInput();
+		Mission mission = searchingMissionInput();
 		System.out.println();
+		if (mission.getPairCrews() == null) {
+			return;
+		}
+		OutputView.printPairCrews(mission.getPairCrews());
+
 	}
 
 	private void initializing() {
@@ -87,7 +92,7 @@ public class MatchingMachine {
 
 	private Mission missionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
-		while(!(isExistMission(matchInformation))){
+		while (!(isExistMission(matchInformation))) {
 			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		}
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
@@ -105,22 +110,22 @@ public class MatchingMachine {
 		return mission;
 	}
 
-	private void searchingInput() {
+	private Mission searchingMissionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
 		if (mission.getPairCrews() == null) {
 			OutputView.printNonSearchingResult();
-			return;
+			return null;
 		}
-		OutputView.printPairCrews(mission.getPairCrews());
+		return mission;
 	}
 
 	private boolean isExistMission(List<String> matchInformation) {
 		boolean isExistMission = true;
-		try{
+		try {
 			checkValidateNonExistMission(matchInformation);
-		} catch (IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			isExistMission = false;
 		}
@@ -130,7 +135,7 @@ public class MatchingMachine {
 	private void checkValidateNonExistMission(List<String> matchInformation) {
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
-		if(mission == null){
+		if (mission == null) {
 			throw new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다.");
 		}
 	}
