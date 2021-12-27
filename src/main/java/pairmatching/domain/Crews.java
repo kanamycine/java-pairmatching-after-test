@@ -20,40 +20,26 @@ public class Crews {
 
 	public void makeBackCrews() {
 		String readLine = null;
-		int lineNumber = 0;
-		boolean hasMore = true;
 		try {
 			FileReader fileReader = new FileReader("src/main/resources/backend-crew.md");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			while (hasMore) {
-				if ((readLine = bufferedReader.readLine()) != null) {
+			while ((readLine = bufferedReader.readLine())!=null) {
 					backEndCrews.add(readLine);
-					lineNumber++;
-					hasMore = true;
-				} else
-					hasMore = false;
 			}
 			fileReader.close();
 			bufferedReader.close();
-		} catch (IOException e) {
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void makeFrontCrews() {
 		String readLine = null;
-		int lineNumber = 0;
-		boolean hasMore = true;
 		try {
 			FileReader fileReader = new FileReader("src/main/resources/frontend-crew.md");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			while (hasMore) {
-				if ((readLine = bufferedReader.readLine()) != null) {
+			while ((readLine = bufferedReader.readLine())!=null) {
 					FrontEndCrews.add(readLine);
-					lineNumber++;
-					hasMore = true;
-				} else
-					hasMore = false;
 			}
 			fileReader.close();
 			bufferedReader.close();
