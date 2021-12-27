@@ -87,6 +87,9 @@ public class MatchingMachine {
 
 	private Mission missionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+		while(!(isExistMission(matchInformation))){
+			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+		}
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
 
@@ -111,5 +114,24 @@ public class MatchingMachine {
 			return;
 		}
 		OutputView.printPairCrews(mission.getPairCrews());
+	}
+
+	private boolean isExistMission(List<String> matchInformation) {
+		boolean isExistMission = true;
+		try{
+			checkValidateNonExistMission(matchInformation);
+		} catch (IllegalArgumentException e){
+			System.out.println(e.getMessage());
+			isExistMission = false;
+		}
+		return isExistMission;
+	}
+
+	private void checkValidateNonExistMission(List<String> matchInformation) {
+		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
+				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
+		if(mission == null){
+			throw new IllegalArgumentException("[ERROR] 존재하지 않는 미션입니다.");
+		}
 	}
 }
