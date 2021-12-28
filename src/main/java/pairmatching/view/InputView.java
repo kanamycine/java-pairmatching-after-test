@@ -10,16 +10,15 @@ public class InputView {
 			+ "\n3. 페어 초기화"
 			+ "\nQ. 종료";
 
-	private static final String HASH_LINE = "############################################";
-	private static final String COURSE_LIST = "과정: 백엔드 | 프론트엔드";
-	private static final String MISSION = "미션:";
-	private static final String LEVEL_ONE = "- 레벨1: 자동차경주 | 로또 | 숫자야구게임";
-	private static final String LEVEL_TWO = "- 레벨2: 장바구니 | 결제 | 지하철노선도";
-	private static final String LEVEL_THREE = "- 레벨3:";
-	private static final String LEVEL_FOUR = "- 레벨4: 성능개선 | 배포";
-	private static final String LEVEL_FIVE = "- 레벨5:";
-	private static final String ASK_MATCH_INFORMATION_INPUT = "과정, 레벨, 미션을 선택하세요.";
-	private static final String ASK_MATCH_INFORMATION_EX = "ex) 백엔드, 레벨1, 자동차경주";
+	private static final String ASK_MISSION_INFORMATION = "############################################"
+			+ "\n과정: 백엔드 | 프론트엔드"
+			+ "\n미션:"
+			+ "\n- 레벨1: 자동차경주 | 로또 | 숫자야구게임"
+			+ "\n- 레벨2: 장바구니 | 결제 | 지하철노선도"
+			+ "\n- 레벨3:"
+			+ "\n- 레벨4: 성능개선 | 배포"
+			+ "\n- 레벨5:"
+			+ "\n############################################";
 
 	private static final String ASK_KEEP_MATCHING = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 	private static final String YES_OR_NO_INPUT = "네 | 아니오";
@@ -40,17 +39,7 @@ public class InputView {
 	}
 
 	public static String askWantedMatchingInformation() {
-		System.out.println(HASH_LINE);
-		System.out.println(COURSE_LIST);
-		System.out.println(MISSION);
-		System.out.println(LEVEL_ONE);
-		System.out.println(LEVEL_TWO);
-		System.out.println(LEVEL_THREE);
-		System.out.println(LEVEL_FOUR);
-		System.out.println(LEVEL_FIVE);
-		System.out.println(HASH_LINE);
-		System.out.println(ASK_MATCH_INFORMATION_INPUT);
-		System.out.println(ASK_MATCH_INFORMATION_EX);
+		System.out.println(ASK_MISSION_INFORMATION);
 		return Console.readLine();
 	}
 
