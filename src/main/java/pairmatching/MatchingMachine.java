@@ -98,6 +98,12 @@ public class MatchingMachine {
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
 
+		mission = checkExistPreMatching(mission);
+		return mission;
+	}
+
+	private Mission checkExistPreMatching(Mission mission) {
+		List<String> matchInformation;
 		while (mission.getPairCrews() != null) {
 			String keepMatchingAnswer = InputView.askKeepMatching();
 			if (keepMatchingAnswer.equals("네")) {
@@ -112,6 +118,9 @@ public class MatchingMachine {
 
 	private Mission searchingMissionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+		while (!(isExistMission(matchInformation))) {
+			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
+		}
 		Mission mission = missions.getMission(Course.getCourse(matchInformation.get(0)),
 				Level.getLevel(matchInformation.get(1)), matchInformation.get(2));
 		if (mission.getPairCrews() == null) {
