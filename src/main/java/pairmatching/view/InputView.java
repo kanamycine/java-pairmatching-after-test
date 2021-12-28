@@ -39,6 +39,7 @@ public class InputView {
 	}
 
 	public static String askWantedMatchingInformation() {
+		System.out.println();
 		System.out.println(ASK_MISSION_INFORMATION);
 		return Console.readLine();
 	}

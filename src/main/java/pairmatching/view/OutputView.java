@@ -14,6 +14,7 @@ public class OutputView {
 				threePeopleCrewPrint(set, nestedIterator);
 			}
 		}
+		System.out.println();
 	}
 
 	private static void twoPeopleCrewPrint(Set set, Iterator nestedIterator) {

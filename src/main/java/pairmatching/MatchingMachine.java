@@ -58,7 +58,6 @@ public class MatchingMachine {
 		Set<Set> pairCrews = matching.match(mission, crews);
 		if (checkDuplicated(matching, mission, pairCrews)) {
 			OutputView.printPairCrews(pairCrews);
-			System.out.println();
 			return;
 		}
 		System.out.println("[Error] : 3회이상 재매칭 해보았으나, 경우의 수를 발견하지 못했습니다.");
@@ -78,12 +77,11 @@ public class MatchingMachine {
 
 	private void search() {
 		Mission mission = searchingMissionInput();
-		System.out.println();
+
 		if (mission.getPairCrews() == null) {
 			return;
 		}
 		OutputView.printPairCrews(mission.getPairCrews());
-
 	}
 
 	private void initialize() {
