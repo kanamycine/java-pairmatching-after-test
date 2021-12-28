@@ -16,16 +16,16 @@ public class OutputView {
 		}
 	}
 
+	private static void twoPeopleCrewPrint(Set set, Iterator nestedIterator) {
+		if (set.size() == 2) {
+			System.out.println(nestedIterator.next() + " : " + nestedIterator.next());
+		}
+	}
+
 	private static void threePeopleCrewPrint(Set set, Iterator nestedIterator) {
 		if (set.size() == 3) {
 			System.out.println(
 					nestedIterator.next() + " : " + nestedIterator.next() + " : " + nestedIterator.next());
-		}
-	}
-
-	private static void twoPeopleCrewPrint(Set set, Iterator nestedIterator) {
-		if (set.size() == 2) {
-			System.out.println(nestedIterator.next() + " : " + nestedIterator.next());
 		}
 	}
 
