@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-	private static final String ASK_FEATURE_INPUT = "기능을 선택하세요.";
-	private static final String MATCHING_INPUT = "1. 페어 매칭";
-	private static final String SEARCH_INPUT = "2. 페어 조회";
-	private static final String INITIALIZING_INPUT = "3. 페어 초기화";
-	private static final String QUIT_INPUT = "Q. 종료";
+	private static final String ASK_FEATURE_INPUT = "기능을 선택하세요. "
+			+ "\n1. 페어 매칭 "
+			+ "\n2. 페어 조회 "
+			+ "\n3. 페어 초기화"
+			+ "\nQ. 종료";
 
 	private static final String HASH_LINE = "############################################";
 	private static final String COURSE_LIST = "과정: 백엔드 | 프론트엔드";
@@ -26,13 +26,15 @@ public class InputView {
 
 	public static int askFeature() {
 		System.out.println(ASK_FEATURE_INPUT);
-		System.out.println(MATCHING_INPUT);
-		System.out.println(SEARCH_INPUT);
-		System.out.println(INITIALIZING_INPUT);
-		System.out.println(QUIT_INPUT);
 		String input = Console.readLine();
 		if (input.equals("Q")) {
 			return input.charAt(0);
+		}
+		if (input.length() > 1) {
+			return 0;
+		}
+		if (!(input.charAt(0) >= 49 && input.charAt(0) <= 59)) {
+			return 0;
 		}
 		return Integer.parseInt(input);
 	}

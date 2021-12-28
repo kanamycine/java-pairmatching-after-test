@@ -27,6 +27,9 @@ public class MatchingMachine {
 	public void run() {
 		while (true) {
 			MainView mainView = MainView.valueOf(InputView.askFeature());
+			while(!(isRightSelectFeature(mainView))){
+				mainView = MainView.valueOf(InputView.askFeature());
+			}
 			if (mainView.isExit()) {
 				return;
 			}
@@ -139,6 +142,23 @@ public class MatchingMachine {
 			isExistMission = false;
 		}
 		return isExistMission;
+	}
+
+	private boolean isRightSelectFeature(MainView mainView){
+		boolean isRightSelectFeature = true;
+		try{
+			checkRightSelectFeature(mainView);
+		} catch(IllegalArgumentException e){
+			System.out.println(e.getMessage());
+			isRightSelectFeature = false;
+		}
+		return isRightSelectFeature;
+	}
+
+	private void checkRightSelectFeature(MainView mainView) {
+		if (mainView == null){
+			throw new IllegalArgumentException("[ERROR] 기능 선택이 잘못되었습니다.");
+		}
 	}
 
 	private void checkValidateNonExistMission(List<String> matchInformation) {
