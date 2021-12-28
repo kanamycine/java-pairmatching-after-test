@@ -21,7 +21,6 @@ public class Missions {
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL1, "로또"));
 		missions.add(new Mission(Course.BACKEND, Level.LEVEL1, "숫자야구"));
 		missions.add(new Mission(Course.FRONTEND, Level.LEVEL1, "숫자야구"));
-
 	}
 
 	private void makeLevelTwoMission() {

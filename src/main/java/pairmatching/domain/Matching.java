@@ -60,11 +60,12 @@ public class Matching {
 	}
 
 	public boolean checkDuplicatePair(Set<Set> pairCrews, Missions missions, Mission mission) {
-		Set<Set> sameLevelPairCrews = new HashSet<>();
-		int totalPairCrewsCount = pairCrews.size();
 		Level sameLevel = mission.getLevel();
 		Course sameCourse = mission.getCourse();
 		String sameName = mission.getName();
+		Set<Set> sameLevelPairCrews = new HashSet<>();
+		int totalPairCrewsCount = pairCrews.size();
+
 		sameLevelPairCrewsAdder(pairCrews, sameLevelPairCrews);
 		List<Mission> sameLevelMissions = missions.getSameLevelCourseMission(sameLevel, sameCourse, sameName);
 		totalPairCrewsCount = getTotalPairCrewsCount(sameLevelPairCrews, totalPairCrewsCount, sameLevelMissions);
