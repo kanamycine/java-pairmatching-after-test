@@ -11,6 +11,9 @@ public class Crews {
 	private List<String> backEndCrews;
 	private List<String> FrontEndCrews;
 
+	private static final String backEndFilePath = "src/main/resources/backend-crew.md";
+	private static final String frontEndFilePath = "src/main/resources/frontend-crew.md";
+
 	public Crews() {
 		backEndCrews = new ArrayList<>();
 		FrontEndCrews = new ArrayList<>();
@@ -21,7 +24,7 @@ public class Crews {
 	public void makeBackCrews() {
 		String readLine = null;
 		try {
-			FileReader fileReader = new FileReader("src/main/resources/backend-crew.md");
+			FileReader fileReader = new FileReader(backEndFilePath);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			while ((readLine = bufferedReader.readLine())!=null) {
 					backEndCrews.add(readLine);
@@ -36,7 +39,7 @@ public class Crews {
 	public void makeFrontCrews() {
 		String readLine = null;
 		try {
-			FileReader fileReader = new FileReader("src/main/resources/frontend-crew.md");
+			FileReader fileReader = new FileReader(frontEndFilePath);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			while ((readLine = bufferedReader.readLine())!=null) {
 					FrontEndCrews.add(readLine);
