@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Crews {
 
-	private List<String> backEndCrews;
-	private List<String> FrontEndCrews;
-
 	private static final String backEndFilePath = "src/main/resources/backend-crew.md";
 	private static final String frontEndFilePath = "src/main/resources/frontend-crew.md";
+
+	private List<String> backEndCrews;
+	private List<String> FrontEndCrews;
 
 	public Crews() {
 		backEndCrews = new ArrayList<>();
@@ -26,12 +26,12 @@ public class Crews {
 		try {
 			FileReader fileReader = new FileReader(backEndFilePath);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			while ((readLine = bufferedReader.readLine())!=null) {
-					backEndCrews.add(readLine);
+			while ((readLine = bufferedReader.readLine()) != null) {
+				backEndCrews.add(readLine);
 			}
 			fileReader.close();
 			bufferedReader.close();
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -41,8 +41,8 @@ public class Crews {
 		try {
 			FileReader fileReader = new FileReader(frontEndFilePath);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			while ((readLine = bufferedReader.readLine())!=null) {
-					FrontEndCrews.add(readLine);
+			while ((readLine = bufferedReader.readLine()) != null) {
+				FrontEndCrews.add(readLine);
 			}
 			fileReader.close();
 			bufferedReader.close();
