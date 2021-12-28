@@ -39,23 +39,23 @@ public class MatchingMachine {
 
 	private void runFeature(MainView mainView) {
 		if (mainView.isMatching()) {
-			matching();
+			match();
 			return;
 		}
 		if (mainView.isSearching()) {
-			searching();
+			search();
 			return;
 		}
 		if (mainView.isInitializing()) {
-			initializing();
+			initialize();
 			return;
 		}
 	}
 
-	private void matching() {
+	private void match() {
 		Matching matching = new Matching();
 		Mission mission = missionInput();
-		Set<Set> pairCrews = matching.matching(mission, crews);
+		Set<Set> pairCrews = matching.match(mission, crews);
 		if (checkDuplicated(matching, mission, pairCrews)) {
 			OutputView.printPairCrews(pairCrews);
 			System.out.println();
@@ -76,7 +76,7 @@ public class MatchingMachine {
 		return false;
 	}
 
-	private void searching() {
+	private void search() {
 		Mission mission = searchingMissionInput();
 		System.out.println();
 		if (mission.getPairCrews() == null) {
@@ -86,7 +86,7 @@ public class MatchingMachine {
 
 	}
 
-	private void initializing() {
+	private void initialize() {
 		List<Mission> allMissions = missions.getMissions();
 		for (Mission mission : allMissions) {
 			mission.updatePairCrews(null);
