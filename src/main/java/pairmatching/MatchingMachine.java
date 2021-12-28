@@ -75,22 +75,6 @@ public class MatchingMachine {
 		return false;
 	}
 
-	private void search() {
-		Mission mission = searchingMissionInput();
-
-		if (mission.getPairCrews() == null) {
-			return;
-		}
-		OutputView.printPairCrews(mission.getPairCrews());
-	}
-
-	private void initialize() {
-		List<Mission> allMissions = missions.getMissions();
-		for (Mission mission : allMissions) {
-			mission.updatePairCrews(null);
-		}
-	}
-
 	private Mission missionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		while (!(isExistMission(matchInformation))) {
@@ -117,7 +101,16 @@ public class MatchingMachine {
 		return mission;
 	}
 
-	private Mission searchingMissionInput() {
+	private void search() {
+		Mission mission = searchMissionInput();
+
+		if (mission.getPairCrews() == null) {
+			return;
+		}
+		OutputView.printPairCrews(mission.getPairCrews());
+	}
+
+	private Mission searchMissionInput() {
 		List<String> matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
 		while (!(isExistMission(matchInformation))) {
 			matchInformation = Arrays.asList((InputView.askWantedMatchingInformation().split(", ")));
@@ -151,6 +144,13 @@ public class MatchingMachine {
 			isRightSelectFeature = false;
 		}
 		return isRightSelectFeature;
+	}
+
+	private void initialize() {
+		List<Mission> allMissions = missions.getMissions();
+		for (Mission mission : allMissions) {
+			mission.updatePairCrews(null);
+		}
 	}
 
 	private void checkRightSelectFeature(MainView mainView) {
